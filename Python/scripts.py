@@ -16,7 +16,7 @@ for package_version in installed_packages:
 installed_packages = dict(zip(keys, values))
 
 #Checking the installion and loading:
-packages = ['os', 'pandas', 'numpy', 'zipfile', 'google', 'google.cloud', 'google.oauth2.service_account', 'gspread', 'IPython', 'matplotlib', 'dplython', 'requests']
+packages = ['os', 'pandas', 'numpy', 'zipfile', 'google', 'google.cloud', 'google.oauth2.service_account', 'gspread', 'IPython', 'matplotlib', 'dplython', 'requests', 'tkinter']
 
 for package in packages:
     if package in installed_packages.keys():
