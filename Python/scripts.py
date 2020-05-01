@@ -16,7 +16,7 @@ for package_version in installed_packages:
 installed_packages = dict(zip(keys, values))
 
 #Checking the installion and loading:
-packages = ['os', 'pandas', 'numpy', 'zipfile', 'google', 'google.cloud', 'google.oauth2.service_account', 'gspread', 'IPython', 'matplotlib', 'dplython', 'requests', 'tkinter']
+packages = ['os', 'pandas', 'numpy', 'zipfile', 'google', 'google.cloud', 'google.oauth2.service_account', 'gspread', 'IPython', 'matplotlib', 'dplython', 'requests', 'tkinter', 'sqlalchemy', 'pandasql']
 
 for package in packages:
     if package in installed_packages.keys():
@@ -29,5 +29,5 @@ for package in packages:
             except ImportError as import_erros:
                 print("Package not imported: ", package)
     else:
-        #pip._internal.main(["install", package])
+        !pip install -U package
         globals()[package] = __import__(package)
