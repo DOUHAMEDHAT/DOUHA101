@@ -25,7 +25,7 @@ def optimizer(dataframe):
                     else:
                         dataframe[col] = pd.to_datetime(dataframe[col], utc=True)
             except:                            
-                if dataframe[col].nunique() != dataframe[col].count():
+                if (dataframe[col].nunique()/dataframe[col].count()) <= 0.2:
                     dataframe[col] = dataframe[col].astype('category')
                 else:
                     dataframe[col] = dataframe[col].astype('object')
@@ -69,11 +69,10 @@ def optimizer(dataframe):
             'end_usage_MB': (dataframe.memory_usage()[col]/(1024**2))
         } ,ignore_index=True)              
     
-    
     frame = start_frame.merge(end_frame, how='left')
     frame['%optimization'] = round(((frame['start_usage_MB'] - frame['end_usage_MB'])/frame['start_usage_MB'])*100.00,2)
     
-    print("___MEMORY USAGE AFTER MODIFICATION:___")
+    print("___MEMORY USAGE AFTER COMPLETION:___")
     end_memory = dataframe.memory_usage().sum() / 1024**2 
     print("Memory usage is: ",end_memory," MB")
     print("This is ",100*end_memory/start_memory,"% of the initial size")
